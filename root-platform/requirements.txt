@@ -10,3 +10,4 @@ boto3
 Flask-CORS
 Flask-Injector
 Flask-Cognito
+flask_jwt_extended

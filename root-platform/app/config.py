@@ -2,14 +2,11 @@ import os
 from datetime import timedelta
 
 class Config:
-    #DATABASE CONFIGURATION
+    # DATABASE CONFIGURATION
     SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    #COGNITO CONFIGURATION
-    COGNITO_REGION = 'us-east-1'
-    COGNITO_USERPOOL_ID = os.getenv('COGNITO_USERPOOL_ID')
-    COGNITO_APP_CLIENT_ID = os.getenv('COGNITO_APP_CLIENT_ID')
-    COGNITO_CHECK_TOKEN_EXPIRATION = True
-    COGNITO_JWT_HEADER_NAME = 'Authorization'
-    COGNITO_JWT_HEADER_PREFIX = 'Bearer'
+    # JWT CONFIGURATION
+    JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', 'tu_clave_jwt_super_secreta')
+    # Convertir la variable de entorno a entero para usarla como minutos, por defecto 60 (1 hora)
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES', 60)))
